@@ -347,6 +347,13 @@ function insert!(pt::ParallelOctTree, particles::Vector{Particle})
     nothing
 end
 
+function insert!(t::OctTree, particles::Vector{Particle})
+    @inbounds for p in particles
+        insert!(t, p)
+    end
+    nothing
+end
+
 function get_accel_all_particles!(pt::ParallelOctTree,
     particles::Vector{Particle}, alpha2::Float64, eps2::Float64,
         iax::Vector{Float64}, iay::Vector{Float64}, iaz::Vector{Float64})
@@ -371,6 +378,20 @@ function get_accel_all_particles!(pt::ParallelOctTree,
             iay[i] += pt.tay[tid,i]
             iaz[i] += pt.taz[tid,i]
         end
+    end
+    nothing
+end
+
+function get_accel_all_particles!(t::OctTree,
+    particles::Vector{Particle}, alpha2::Float64, eps2::Float64,
+        iax::Vector{Float64}, iay::Vector{Float64}, iaz::Vector{Float64})
+
+    @inbounds for i in 1:length(particles)
+        const p = particles[i]
+        ax,ay,az = get_accel(t, p.x, p.y, p.z, alpha2, eps2)
+        iax[i] = ax
+        iay[i] = ay
+        iaz[i] = az
     end
     nothing
 end
@@ -400,6 +421,21 @@ function get_accel_all_particles_rel!(pt::ParallelOctTree,
             iay[i] += pt.tay[tid,i]
             iaz[i] += pt.taz[tid,i]
         end
+    end
+    nothing
+end
+
+function get_accel_all_particles_rel!(t::OctTree,
+    particles::Vector{Particle}, alpha2::Float64, eps2::Float64,
+        iax::Vector{Float64}, iay::Vector{Float64}, iaz::Vector{Float64})
+
+    @inbounds for i in 1:length(particles)
+        const p = particles[i]
+        const old_acc = sqrt(iax[i]*iax[i]+iay[i]*iay[i]+iaz[i]*iaz[i])
+        ax,ay,az = get_accel_rel(t, p.x, p.y, p.z, alpha2, eps2, old_acc)
+        iax[i] = ax
+        iay[i] = ay
+        iaz[i] = az
     end
     nothing
 end
