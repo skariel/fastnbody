@@ -190,10 +190,6 @@ function insert!(t::OctTree, particles::Vector{Particle})
 end
 
 
-
-########################################
-#######################################
-
 immutable stop_cond_data
     should_stop::Bool
     ax1::Float64
@@ -218,113 +214,113 @@ function prepare_accel!(t::OctTree, alpha2::Float64, eps2::Float64)
             end
             # expand self interactions
             curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.lxlylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.lxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.lxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.lxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.hxlylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.hxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.hxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlylz
-            t.faststack2[curr_stack_ix] = q2.hxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlyhz
-            t.faststack2[curr_stack_ix] = q2.lxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlyhz
-            t.faststack2[curr_stack_ix] = q2.lxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlyhz
-            t.faststack2[curr_stack_ix] = q2.lxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlyhz
-            t.faststack2[curr_stack_ix] = q2.hxlylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlyhz
-            t.faststack2[curr_stack_ix] = q2.hxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlyhz
-            t.faststack2[curr_stack_ix] = q2.hxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxlyhz
-            t.faststack2[curr_stack_ix] = q2.hxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhylz
-            t.faststack2[curr_stack_ix] = q2.lxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhylz
-            t.faststack2[curr_stack_ix] = q2.lxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhylz
-            t.faststack2[curr_stack_ix] = q2.hxlylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhylz
-            t.faststack2[curr_stack_ix] = q2.hxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhylz
-            t.faststack2[curr_stack_ix] = q2.hxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhylz
-            t.faststack2[curr_stack_ix] = q2.hxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhyhz
-            t.faststack2[curr_stack_ix] = q2.lxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhyhz
-            t.faststack2[curr_stack_ix] = q2.hxlylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhyhz
-            t.faststack2[curr_stack_ix] = q2.hxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhyhz
-            t.faststack2[curr_stack_ix] = q2.hxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.lxhyhz
-            t.faststack2[curr_stack_ix] = q2.hxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxlylz
-            t.faststack2[curr_stack_ix] = q2.hxlylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxlylz
-            t.faststack2[curr_stack_ix] = q2.hxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxlylz
-            t.faststack2[curr_stack_ix] = q2.hxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxlylz
-            t.faststack2[curr_stack_ix] = q2.hxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxlyhz
-            t.faststack2[curr_stack_ix] = q2.hxlyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxlyhz
-            t.faststack2[curr_stack_ix] = q2.hxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxlyhz
-            t.faststack2[curr_stack_ix] = q2.hxhyhz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxhylz
-            t.faststack2[curr_stack_ix] = q2.hxhylz
-            curr_stack_ix += 1
-            t.faststack1[curr_stack_ix] = q1.hxhylz
-            t.faststack2[curr_stack_ix] = q2.hxhyhz
-            curr_stack_ix += 1
             t.faststack1[curr_stack_ix] = q1.hxhyhz
             t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxhylz
+            t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxlyhz
+            t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxlylz
+            t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhyhz
+            t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhylz
+            t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlyhz
+            t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.hxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxhylz
+            t.faststack2[curr_stack_ix] = q2.hxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxlyhz
+            t.faststack2[curr_stack_ix] = q2.hxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxlylz
+            t.faststack2[curr_stack_ix] = q2.hxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhyhz
+            t.faststack2[curr_stack_ix] = q2.hxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhylz
+            t.faststack2[curr_stack_ix] = q2.hxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlyhz
+            t.faststack2[curr_stack_ix] = q2.hxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.hxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxlyhz
+            t.faststack2[curr_stack_ix] = q2.hxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxlylz
+            t.faststack2[curr_stack_ix] = q2.hxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhyhz
+            t.faststack2[curr_stack_ix] = q2.hxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhylz
+            t.faststack2[curr_stack_ix] = q2.hxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlyhz
+            t.faststack2[curr_stack_ix] = q2.hxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.hxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.hxlylz
+            t.faststack2[curr_stack_ix] = q2.hxlylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhyhz
+            t.faststack2[curr_stack_ix] = q2.hxlylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhylz
+            t.faststack2[curr_stack_ix] = q2.hxlylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlyhz
+            t.faststack2[curr_stack_ix] = q2.hxlylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.hxlylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhyhz
+            t.faststack2[curr_stack_ix] = q2.lxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhylz
+            t.faststack2[curr_stack_ix] = q2.lxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlyhz
+            t.faststack2[curr_stack_ix] = q2.lxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.lxhyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxhylz
+            t.faststack2[curr_stack_ix] = q2.lxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlyhz
+            t.faststack2[curr_stack_ix] = q2.lxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.lxhylz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlyhz
+            t.faststack2[curr_stack_ix] = q2.lxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.lxlyhz
+            curr_stack_ix += 1
+            t.faststack1[curr_stack_ix] = q1.lxlylz
+            t.faststack2[curr_stack_ix] = q2.lxlylz
             continue
         end
         s = stop_cond(q1, q2, alpha2, eps2)
@@ -340,41 +336,41 @@ function prepare_accel!(t::OctTree, alpha2::Float64, eps2::Float64)
         if (q1.r > q2.r && q1.is_divided) || !q2.is_divided
             q1,q2 = q2,q1
         end
-        if !q2.is_divided
-            continue
-        end
 
         # now q1 is the smaller node
         # we split the larger node and push it into the stack
         curr_stack_ix += 1
         t.faststack1[curr_stack_ix] = q1
-        t.faststack2[curr_stack_ix] = q2.lxlylz
-        curr_stack_ix += 1
-        t.faststack1[curr_stack_ix] = q1
-        t.faststack2[curr_stack_ix] = q2.lxlyhz
-        curr_stack_ix += 1
-        t.faststack1[curr_stack_ix] = q1
-        t.faststack2[curr_stack_ix] = q2.lxhylz
-        curr_stack_ix += 1
-        t.faststack1[curr_stack_ix] = q1
-        t.faststack2[curr_stack_ix] = q2.lxhyhz
-        curr_stack_ix += 1
-        t.faststack1[curr_stack_ix] = q1
-        t.faststack2[curr_stack_ix] = q2.hxlylz
-        curr_stack_ix += 1
-        t.faststack1[curr_stack_ix] = q1
-        t.faststack2[curr_stack_ix] = q2.hxlyhz
+        t.faststack2[curr_stack_ix] = q2.hxhyhz
         curr_stack_ix += 1
         t.faststack1[curr_stack_ix] = q1
         t.faststack2[curr_stack_ix] = q2.hxhylz
         curr_stack_ix += 1
         t.faststack1[curr_stack_ix] = q1
-        t.faststack2[curr_stack_ix] = q2.hxhyhz
+        t.faststack2[curr_stack_ix] = q2.hxlyhz
+        curr_stack_ix += 1
+        t.faststack1[curr_stack_ix] = q1
+        t.faststack2[curr_stack_ix] = q2.hxlylz
+        curr_stack_ix += 1
+        t.faststack1[curr_stack_ix] = q1
+        t.faststack2[curr_stack_ix] = q2.lxhyhz
+        curr_stack_ix += 1
+        t.faststack1[curr_stack_ix] = q1
+        t.faststack2[curr_stack_ix] = q2.lxhylz
+        curr_stack_ix += 1
+        t.faststack1[curr_stack_ix] = q1
+        t.faststack2[curr_stack_ix] = q2.lxlyhz
+        curr_stack_ix += 1
+        t.faststack1[curr_stack_ix] = q1
+        t.faststack2[curr_stack_ix] = q2.lxlylz
     end
     nothing
 end
 
 @inline function stop_cond(q1::OctTreeNode, q2::OctTreeNode, alpha2::Float64, eps2::Float64)
+    if isemptyleaf(q1) || isemptyleaf(q2)
+        return stop_cond_data(true, 0.0,0.0,0.0, 0.0,0.0,0.0)
+    end
 
     if !q1.is_empty && !q2.is_empty
         const dx = q2.particle.x - q1.particle.x
@@ -411,7 +407,10 @@ end
     const l = q1.r+q2.r
 
     if l/smthdr > alpha2
-        return stop_cond_data(false, 0.0,0.0,0.0, 0.0,0.0,0.0)
+        if q1.is_divided || q2.is_divided
+            return stop_cond_data(false, 0.0,0.0,0.0, 0.0,0.0,0.0)
+        end
+        return stop_cond_data(true, 0.0,0.0,0.0, 0.0,0.0,0.0)
     end
 
     const smthdr32 = smthdr2*smthdr
@@ -435,8 +434,6 @@ function get_accel(t::OctTree, particle::Particle)
     ax,ay,az
 end
 
-########################################
-#########################################
 
 
 
