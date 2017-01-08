@@ -29,9 +29,23 @@ type OctTreeNode
     lxhyhz::OctTreeNode
     hxlyhz::OctTreeNode
     hxhyhz::OctTreeNode
+
     ax::Float64
     ay::Float64
     az::Float64
+
+    # ax_dx::Float64
+    # ax_dy::Float64
+    # ax_dz::Float64
+
+    # ay_dx::Float64
+    # ay_dy::Float64
+    # ay_dz::Float64
+
+    # az_dx::Float64
+    # az_dy::Float64
+    # az_dz::Float64
+
     function OctTreeNode(r::Number, midx::Number, midy::Number, midz::Number)
         n = new(r, midx, midy, midz, true, false, Particle(0.0, 0.0, 0.0, 0.0))
         n.lxlylz = n
@@ -119,9 +133,6 @@ end
     q.midz = midz
     q.is_empty = true
     q.is_divided = false
-    q.ax=0.0
-    q.ay=0.0
-    q.az=0.0
 end
 
 @inline function divide!(h::OctTree, q::OctTreeNode)
@@ -372,26 +383,6 @@ end
         return stop_cond_data(true, 0.0,0.0,0.0, 0.0,0.0,0.0)
     end
 
-    if !q1.is_empty && !q2.is_empty
-        const dx = q2.particle.x - q1.particle.x
-        const dy = q2.particle.y - q1.particle.y
-        const dz = q2.particle.z - q1.particle.z
-
-        const dx2 = dx*dx
-        const dy2 = dy*dy
-        const dz2 = dz*dz
-        const dr2 = dx2 + dy2 + dz2
-
-        const smthdr2 = eps2+dr2
-        const smthdr = sqrt(smthdr2)
-        const smthdr32 = smthdr2*smthdr
-
-        const denom1 = smthdr32/q2.particle.m
-        const denom2 = -smthdr32/q1.particle.m
-
-        return stop_cond_data(true, dx/denom1, dy/denom1, dz/denom1, dx/denom2, dy/denom2, dz/denom2)
-    end
-
     const dx = q2.particle.x - q1.particle.x
     const dy = q2.particle.y - q1.particle.y
     const dz = q2.particle.z - q1.particle.z
@@ -404,8 +395,14 @@ end
     const smthdr2 = eps2+dr2
     const smthdr = sqrt(smthdr2)
 
-    const l = q1.r+q2.r
+    if !q1.is_empty && !q2.is_empty
+        const smthdr32 = smthdr2*smthdr
+        const denom1 = smthdr32/q2.particle.m
+        const denom2 = -smthdr32/q1.particle.m
+        return stop_cond_data(true, dx/denom1, dy/denom1, dz/denom1, dx/denom2, dy/denom2, dz/denom2)
+    end
 
+    const l = q1.r+q2.r
     if l/smthdr > alpha2
         if q1.is_divided || q2.is_divided
             return stop_cond_data(false, 0.0,0.0,0.0, 0.0,0.0,0.0)
@@ -416,7 +413,6 @@ end
     const smthdr32 = smthdr2*smthdr
     const denom1 = smthdr32/q2.particle.m
     const denom2 = -smthdr32/q1.particle.m
-
     return stop_cond_data(true, dx/denom1, dy/denom1, dz/denom1, dx/denom2, dy/denom2, dz/denom2)
 end;
 
